@@ -8,6 +8,16 @@ using System.Windows;
 
 namespace SetupDiff {
 	public partial class App : Application {
-		//
+		public App() {
+			this.InitializeComponent();
+		}
+
+		[STAThread]
+		public static void Main(string[] args) {
+			App app = new App();
+			MainWindow wnd = new MainWindow();
+
+			app.Run(wnd);
+		}
 	}
 }
