@@ -1,12 +1,241 @@
-﻿<Window x:Class="SetupDiff.MainWindow"
+<Window x:Class="SetupDiff.MainWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:SetupDiff"
 	mc:Ignorable="d"
-	Title="MainWindow" Height="450" Width="800">
-	<Grid>
-		<TextBlock>Hello world!</TextBlock>
-	</Grid>
+	Title="ACC Setup Diff" Width="1280" Height="768">
+	<DockPanel>
+		<TreeView ItemsSource="{Binding Tree}" DockPanel.Dock="Left" Style="{StaticResource tree}">
+			<TreeView.Resources>
+				<!-- treeview data templates; specify children in the itemssource property -->
+				<HierarchicalDataTemplate DataType="{x:Type local:CarNode}" ItemsSource="{Binding Children}">
+					<TextBlock Text="{Binding Name}"/>
+				</HierarchicalDataTemplate>
+				<HierarchicalDataTemplate DataType="{x:Type local:TrackNode}" ItemsSource="{Binding Children}">
+					<TextBlock Text="{Binding Name}"/>
+				</HierarchicalDataTemplate>
+				<DataTemplate DataType="{x:Type local:SetupNode}">
+					<TextBlock Text="{Binding Name}"/>
+				</DataTemplate>
+			</TreeView.Resources>
+		</TreeView>
+		<ScrollViewer VerticalScrollBarVisibility="Auto">
+			<StackPanel Orientation="Horizontal">
+				<ItemsControl ItemsSource="{Binding Setups}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="{Binding CarName}"/>
+								<TextBlock Text="{Binding SetupName}"/>
+
+								<!-- Tyres -->
+								<!-- front -->
+								<StackPanel Orientation="Horizontal">
+									<StackPanel>
+										<Label>FL</Label>
+										<Label>Pressure</Label>
+										<TextBlock Text="{Binding PressureFL.Value}"/>
+										<Label>Toe</Label>
+										<TextBlock Text="{Binding ToeFL.Value}"/>
+										<Label>Camber</Label>
+										<TextBlock Text="{Binding CamberFL.Value}"/>
+										<Label>Caster</Label>
+										<TextBlock Text="{Binding CasterFL.Value}"/>
+									</StackPanel>
+									<StackPanel>
+										<Label>FR</Label>
+										<Label>Pressure</Label>
+										<TextBlock Text="{Binding PressureFR.Value}"/>
+										<Label>Toe</Label>
+										<TextBlock Text="{Binding ToeFR.Value}"/>
+										<Label>Camber</Label>
+										<TextBlock Text="{Binding CamberFR.Value}"/>
+										<Label>Caster</Label>
+										<TextBlock Text="{Binding CasterFR.Value}"/>
+									</StackPanel>
+								</StackPanel>
+
+								<!-- rear -->
+								<StackPanel Orientation="Horizontal">
+									<StackPanel>
+										<Label>RL</Label>
+										<Label>Pressure</Label>
+										<TextBlock Text="{Binding PressureRL.Value}"/>
+										<Label>Toe</Label>
+										<TextBlock Text="{Binding ToeRL.Value}"/>
+										<Label>Camber</Label>
+										<TextBlock Text="{Binding CamberRL.Value}"/>
+									</StackPanel>
+									<StackPanel>
+										<Label>RR</Label>
+										<Label>Pressure</Label>
+										<TextBlock Text="{Binding PressureRR.Value}"/>
+										<Label>Toe</Label>
+										<TextBlock Text="{Binding ToeRR.Value}"/>
+										<Label>Camber</Label>
+										<TextBlock Text="{Binding CamberRR.Value}"/>
+									</StackPanel>
+								</StackPanel>
+
+								<!-- Electronics -->
+								<StackPanel>
+									<Label>TC1</Label>
+									<TextBlock Text="{Binding TC1.Value}"/>
+									<Label>TC2</Label>
+									<TextBlock Text="{Binding TC2.Value}"/>
+									<Label>ABS</Label>
+									<TextBlock Text="{Binding ABS.Value}"/>
+									<Label>ECU</Label>
+									<TextBlock Text="{Binding ECU.Value}"/>
+								</StackPanel>
+
+								<!-- Strategy -->
+								<StackPanel>
+									<Label>Fuel</Label>
+									<TextBlock Text="{Binding Fuel.Value}"/>
+									<Label>Tyre</Label>
+									<TextBlock Text="{Binding Tyre.Value}"/>
+									<Label>Front brake compound</Label>
+									<TextBlock Text="{Binding PadF.Value}"/>
+									<Label>Rear brake compound</Label>
+									<TextBlock Text="{Binding PadR.Value}"/>
+									<Label>Steering ratio</Label>
+									<TextBlock Text="{Binding SteeringRatio.Value}"/>
+								</StackPanel>
+
+								<!-- Mechanical -->
+								<StackPanel>
+									<Label>Front ARB</Label>
+									<TextBlock Text="{Binding ARBF.Value}"/>
+									<Label>Brake power</Label>
+									<TextBlock Text="{Binding BrakePower.Value}"/>
+									<Label>Brake bias</Label>
+									<TextBlock Text="{Binding BrakeBias.Value}"/>
+
+									<!-- front -->
+									<StackPanel Orientation="Horizontal">
+										<StackPanel>
+											<Label>FL</Label>
+											<Label>Wheel rate</Label>
+											<TextBlock Text="{Binding WheelRateFL.Value}"/>
+											<Label>Bumpstop rate</Label>
+											<TextBlock Text="{Binding BumpstopRateFL.Value}"/>
+											<Label>Bumpstop range</Label>
+											<TextBlock Text="{Binding BumpstopRangeFL.Value}"/>
+										</StackPanel>
+										<StackPanel>
+											<Label>FR</Label>
+											<Label>Wheel rate</Label>
+											<TextBlock Text="{Binding WheelRateFR.Value}"/>
+											<Label>Bumpstop rate</Label>
+											<TextBlock Text="{Binding BumpstopRateFR.Value}"/>
+											<Label>Bumpstop range</Label>
+											<TextBlock Text="{Binding BumpstopRangeFR.Value}"/>
+										</StackPanel>
+									</StackPanel>
+
+									<!-- rear -->
+									<StackPanel Orientation="Horizontal">
+										<StackPanel>
+											<Label>Wheel rate</Label>
+											<TextBlock Text="{Binding WheelRateRL.Value}"/>
+											<Label>Bumpstop rate</Label>
+											<TextBlock Text="{Binding BumpstopRateRL.Value}"/>
+											<Label>Bumpstop range</Label>
+											<TextBlock Text="{Binding BumpstopRangeRL.Value}"/>
+										</StackPanel>
+										<StackPanel>
+											<Label>Wheel rate</Label>
+											<TextBlock Text="{Binding WheelRateRR.Value}"/>
+											<Label>Bumpstop rate</Label>
+											<TextBlock Text="{Binding BumpstopRateRR.Value}"/>
+											<Label>Bumpstop range</Label>
+											<TextBlock Text="{Binding BumpstopRangeRR.Value}"/>
+										</StackPanel>
+									</StackPanel>
+
+									<Label>Rear ARB</Label>
+									<TextBlock Text="{Binding ARBR.Value}"/>
+									<Label>Preload</Label>
+									<TextBlock Text="{Binding Preload.Value}"/>
+								</StackPanel>
+
+								<!-- Dampers -->
+								<StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<StackPanel>
+											<Label>Bump</Label>
+											<TextBlock Text="{Binding BumpSlowFL.Value}"/>
+											<Label>Fast bump</Label>
+											<TextBlock Text="{Binding BumpFastFL.Value}"/>
+											<Label>Rebound</Label>
+											<TextBlock Text="{Binding ReboundSlowFL.Value}"/>
+											<Label>Fast rebound</Label>
+											<TextBlock Text="{Binding ReboundFastFL.Value}"/>
+										</StackPanel>
+										<StackPanel>
+											<Label>Bump</Label>
+											<TextBlock Text="{Binding BumpSlowFR.Value}"/>
+											<Label>Fast bump</Label>
+											<TextBlock Text="{Binding BumpFastFR.Value}"/>
+											<Label>Rebound</Label>
+											<TextBlock Text="{Binding ReboundSlowFR.Value}"/>
+											<Label>Fast rebound</Label>
+											<TextBlock Text="{Binding ReboundFastFR.Value}"/>
+										</StackPanel>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal">
+										<StackPanel>
+											<Label>Bump</Label>
+											<TextBlock Text="{Binding BumpSlowRL.Value}"/>
+											<Label>Fast bump</Label>
+											<TextBlock Text="{Binding BumpFastRL.Value}"/>
+											<Label>Rebound</Label>
+											<TextBlock Text="{Binding ReboundSlowRL.Value}"/>
+											<Label>Fast rebound</Label>
+											<TextBlock Text="{Binding ReboundFastRL.Value}"/>
+										</StackPanel>
+										<StackPanel>
+											<Label>Bump</Label>
+											<TextBlock Text="{Binding BumpSlowRR.Value}"/>
+											<Label>Fast bump</Label>
+											<TextBlock Text="{Binding BumpFastRR.Value}"/>
+											<Label>Rebound</Label>
+											<TextBlock Text="{Binding ReboundSlowRR.Value}"/>
+											<Label>Fast rebound</Label>
+											<TextBlock Text="{Binding ReboundFastRR.Value}"/>
+										</StackPanel>
+									</StackPanel>
+								</StackPanel>
+
+								<!-- Aero -->
+								<StackPanel Orientation="Horizontal">
+									<StackPanel>
+										<Label>Front</Label>
+										<Label>Ride height</Label>
+										<TextBlock Text="{Binding RideHeightF.Value}"/>
+										<Label>Splitter</Label>
+										<TextBlock Text="{Binding Splitter.Value}"/>
+										<Label>Duct</Label>
+										<TextBlock Text="{Binding DuctF.Value}"/>
+									</StackPanel>
+									<StackPanel>
+										<Label>Rear</Label>
+										<Label>Ride height</Label>
+										<TextBlock Text="{Binding RideHeightR.Value}"/>
+										<Label>Wing</Label>
+										<TextBlock Text="{Binding Wing.Value}"/>
+										<Label>Duct</Label>
+										<TextBlock Text="{Binding DuctR.Value}"/>
+									</StackPanel>
+								</StackPanel>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</StackPanel>
+		</ScrollViewer>
+	</DockPanel>
 </Window>

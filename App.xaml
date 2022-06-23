@@ -4,6 +4,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:local="clr-namespace:SetupDiff">
 	<Application.Resources>
-		<!-- TODO: styling -->
+		<Style x:Key="tree" TargetType="TreeView">
+			<Setter Property="Padding" Value="0, 10, 20, 10"/>
+		</Style>
 	</Application.Resources>
 </Application>
