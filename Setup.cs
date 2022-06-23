@@ -16,6 +16,9 @@ namespace SetupDiff {
 	// Represents a setup with the offsets applied
 	// to the various settings.
 	public class Setup {
+		private string carName;
+		private string setupName;
+
 		private Setting<float>[] pressure;
 		private Setting<float>[] toe;
 		private Setting<float>[] camber;
@@ -49,6 +52,8 @@ namespace SetupDiff {
 		private Setting<int> wing;
 
 		public Setup(
+			string carName,
+			string setupName,
 			Setting<float>[] pressure,
 			Setting<float>[] toe,
 			Setting<float>[] camber,
@@ -76,6 +81,8 @@ namespace SetupDiff {
 			Setting<int> splitter,
 			Setting<int> wing
 		) {
+			this.carName = carName;
+			this.setupName = setupName;
 			this.pressure = pressure;
 			this.toe = toe;
 			this.camber = camber;
@@ -102,6 +109,18 @@ namespace SetupDiff {
 			this.ducts = ducts;
 			this.splitter = splitter;
 			this.wing = wing;
+		}
+
+		public string CarName {
+			get {
+				return this.carName;
+			}
+		}
+
+		public string SetupName {
+			get {
+				return this.setupName;
+			}
 		}
 
 		public Setting<float>[] Pressure {
