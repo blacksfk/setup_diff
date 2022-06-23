@@ -11,8 +11,8 @@ namespace SetupDiff {
 		public Ref[] Toe {get;set;} = new Ref[2];
 		public Ref[] Camber {get;set;} = new Ref[2];
 
-		// front left and front right only
-		public Ref[] Caster {get;set;} = new Ref[2];
+		// should be the same for both front wheels
+		public Ref Caster {get;set;} = new Ref();
 
 		public Ref TC1 {get;set;} = new Ref();
 		public Ref TC2 {get;set;} = new Ref();
