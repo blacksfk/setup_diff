@@ -1,7 +1,12 @@
+using System.IO;
+using System.IO.Path;
+using System.Text.Json;
+
 namespace SetupDiff {
 	// Mimics the ACC setup file JSON structure.
-	public class SetupJSON {
-		public string CarName {get;set;} = "";
+	public class Setup {
+		public string CarName {get;set;} = string.Empty;
+		public string SetupName {get;set;} = string.Empty;
 		public BasicSetup BasicSetup {get;set;} = new BasicSetup();
 		public AdvancedSetup AdvancedSetup {get;set;} = new AdvancedSetup();
 
@@ -129,5 +134,30 @@ namespace SetupDiff {
 
 	public class Drivetrain {
 		public int Preload {get;set;} = 0;
+	}
+
+	private static JsonSerializerOptions opts = new JsonSerializerOptions() {
+		PropertyNameCaseInsensitive = true
+	};
+
+	// Deserialise a setup file.
+	public static Setup FromFile(string path) {
+		// open the file
+		var stream = File.Open(path, FileMode.Open);
+
+		// deserialize into Setup
+		var sj = JsonSerializer.Deserialize<Setup>(stream, opts);
+
+		// close the file
+		stream.Close();
+
+		if (sj == null) {
+			throw new Exception(string.Format("Could not load setup: {0}", path));
+		}
+
+		// set the setup name
+		sj.SetupName = Path.GetFileName(path);
+
+		return sj;
 	}
 }
