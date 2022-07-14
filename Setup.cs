@@ -76,19 +76,19 @@ namespace SetupDiff {
 			var stream = File.Open(path, FileMode.Open);
 
 			// deserialize into Setup
-			var sj = JsonSerializer.Deserialize<Setup>(stream, opts);
+			var setup = JsonSerializer.Deserialize<Setup>(stream, opts);
 
 			// close the file
 			stream.Close();
 
-			if (sj == null) {
+			if (setup == null) {
 				throw new Exception(string.Format("Could not load setup: {0}", path));
 			}
 
 			// set the setup name
-			sj.SetupName = Path.GetFileName(path);
+			setup.SetupName = Path.GetFileName(path);
 
-			return sj;
+			return setup;
 		}
 	}
 
