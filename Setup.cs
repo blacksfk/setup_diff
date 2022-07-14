@@ -1,5 +1,5 @@
+using System;
 using System.IO;
-using System.IO.Path;
 using System.Text.Json;
 
 namespace SetupDiff {
@@ -64,6 +64,31 @@ namespace SetupDiff {
 			get {
 				return this.AdvancedSetup.Drivetrain.Preload;
 			}
+		}
+
+		private static JsonSerializerOptions opts = new JsonSerializerOptions() {
+			PropertyNameCaseInsensitive = true
+		};
+
+		// Deserialise a setup file.
+		public static Setup FromFile(string path) {
+			// open the file
+			var stream = File.Open(path, FileMode.Open);
+
+			// deserialize into Setup
+			var sj = JsonSerializer.Deserialize<Setup>(stream, opts);
+
+			// close the file
+			stream.Close();
+
+			if (sj == null) {
+				throw new Exception(string.Format("Could not load setup: {0}", path));
+			}
+
+			// set the setup name
+			sj.SetupName = Path.GetFileName(path);
+
+			return sj;
 		}
 	}
 
@@ -134,30 +159,5 @@ namespace SetupDiff {
 
 	public class Drivetrain {
 		public int Preload {get;set;} = 0;
-	}
-
-	private static JsonSerializerOptions opts = new JsonSerializerOptions() {
-		PropertyNameCaseInsensitive = true
-	};
-
-	// Deserialise a setup file.
-	public static Setup FromFile(string path) {
-		// open the file
-		var stream = File.Open(path, FileMode.Open);
-
-		// deserialize into Setup
-		var sj = JsonSerializer.Deserialize<Setup>(stream, opts);
-
-		// close the file
-		stream.Close();
-
-		if (sj == null) {
-			throw new Exception(string.Format("Could not load setup: {0}", path));
-		}
-
-		// set the setup name
-		sj.SetupName = Path.GetFileName(path);
-
-		return sj;
 	}
 }
