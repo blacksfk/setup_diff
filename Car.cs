@@ -20,7 +20,7 @@ namespace SetupDiff {
 		public Ref ECU {get;set;} = new Ref();
 
 		public Ref Fuel {get;set;} = new Ref();
-		public Ref TyreSet {get;set;} = new Ref();
+		public Ref Tyre {get;set;} = new Ref();
 		public Ref Pads {get;set;} = new Ref();
 
 		public Ref ARB {get;set;} = new Ref();
@@ -30,9 +30,9 @@ namespace SetupDiff {
 
 		// two reference points for both the front and rear suspension
 		public Ref[] WheelRate {get;set;} = new Ref[2];
-		public Ref[] BumpstopRate {get;set;} = new Ref[2];
+		public Ref[] BumpStopRate {get;set;} = new Ref[2];
 
-		public Ref BumpstopRange {get;set;} = new Ref();
+		public Ref BumpStopRange {get;set;} = new Ref();
 		public Ref Preload {get;set;} = new Ref();
 
 		// all damper settings start at the same value for each corner
