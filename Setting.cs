@@ -1,26 +1,27 @@
 namespace SetupDiff {
 	// Represents a setup item's value.
-	public class Setting<T> {
-		// Clicks away from the minimum.
+	public class Setting {
+		// Number of clicks away from the minimum.
 		private int offset;
 
 		// The actual calculated value (as shown in the game).
-		private T val;
+		private string val;
 
-		public Setting(int offset, T val) {
+		public Setting(int offset, string val) {
 			this.offset = offset;
 			this.val = val;
 		}
 
-		public T Value {
+		public string Value {
 			get {
 				return this.val;
 			}
 		}
 
-		// Compare this setting against another. Returns false
-		// if they're identical and true otherwise.
-		public bool Diff(Setting<T> s) {
+		// Compare this setting against another. Returns false if they're
+		// identical and true otherwise. I.e. there's difference between
+		// the values if true is returned.
+		public bool Diff(Setting s) {
 			return this.offset != s.offset;
 		}
 	}
