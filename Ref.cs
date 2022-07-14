@@ -7,12 +7,18 @@ namespace SetupDiff {
 		public int Factor {get;set;} = 1;
 		public int Increment {get;set;} = 1;
 
-		public int Calculate(int offset) {
-			return this.Start + offset * this.Increment;
-		}
+		// Create a setting from this reference point.
+		public Setting Apply(int offset) {
+			int val = this.Start + offset * this.Increment;
+			string str = string.Empty;
 
-		public float CalculateFloat(int offset) {
-			return this.Calculate(offset) / (float) this.Factor;
+			if (this.Factor == 1) {
+				str = val.ToString();
+			} else {
+				str = (val / this.Factor).ToString("N2");
+			}
+
+			return new Setting(offset, str);
 		}
 	}
 }
