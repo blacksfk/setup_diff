@@ -1,21 +1,21 @@
 namespace SetupDiff {
 	// Represents a reference point for a setup value.
 	// Eg.: Pressure minimum = 20.3, therefore:
-	// start = 203, factor = 10, increment = 1
+	// min = 203, factor = 10, increment = 1
 	public class Ref {
-		public int Start {get;set;} = 0;
-		public int Factor {get;set;} = 1;
-		public int Increment {get;set;} = 1;
+		public int Min {get;set;} = 0;
+		public int Fac {get;set;} = 1;
+		public int Inc {get;set;} = 1;
 
 		// Create a setting from this reference point.
 		public Setting Apply(int offset) {
-			int val = this.Start + offset * this.Increment;
+			int val = this.Min + offset * this.Inc;
 			string str = string.Empty;
 
-			if (this.Factor == 1) {
+			if (this.Fac == 1) {
 				str = val.ToString();
 			} else {
-				str = (val / this.Factor).ToString("N2");
+				str = (val / (double) this.Fac).ToString();
 			}
 
 			return new Setting(offset, str);
