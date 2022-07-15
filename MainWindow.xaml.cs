@@ -1,7 +1,8 @@
 using System;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Controls;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace SetupDiff {
 	public partial class MainWindow : Window {
@@ -20,12 +21,12 @@ namespace SetupDiff {
 		private List<Car> cars;
 
 		// setups being compared
-		private ObservableCollection<Setup> setups;
+		private SetupCollection setups;
 
 		public MainWindow(List<CarNode> tree, List<Car> cars) {
 			this.tree = tree;
 			this.cars = cars;
-			this.setups = new ObservableCollection<Setup>();
+			this.setups = new SetupCollection();
 			this.InitializeComponent();
 
 			// DataContext defaults to null so bind it to this instance
@@ -39,7 +40,7 @@ namespace SetupDiff {
 			}
 		}
 
-		public ObservableCollection<Setup> Setups {
+		public SetupCollection Setups {
 			get {
 				return this.setups;
 			}
