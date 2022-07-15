@@ -1,0 +1,37 @@
+<UserControl x:Class="SetupDiff.SetupCollectionRow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style x:Key="row" TargetType="StackPanel">
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="CornflowerBlue"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="rowBorder" TargetType="Border">
+			<Setter Property="BorderBrush" Value="Gainsboro"/>
+			<Setter Property="BorderThickness" Value="0,1,0,0"/>
+		</Style>
+	</UserControl.Resources>
+	<Border Style="{StaticResource rowBorder}">
+		<StackPanel Orientation="Horizontal" x:Name="sp" Style="{StaticResource row}">
+			<TextBlock Width="{Binding CellWidth}" Text="{Binding Header}" Style="{StaticResource cell}"/>
+			<ItemsControl ItemsSource="{Binding Values}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Width="{Binding Path=DataContext.CellWidth, RelativeSource={RelativeSource AncestorType=StackPanel}}" Text="{Binding Value}" Style="{StaticResource cell}"/>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</StackPanel>
+	</Border>
+</UserControl>
