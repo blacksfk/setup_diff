@@ -211,5 +211,83 @@ namespace SetupDiff {
 			this.Wing.Add(car.Wing.Apply(s.Aero.RearWing));
 			this.DuctR.Add(car.Duct.Apply(s.Aero.BrakeDuct[R]));
 		}
+
+		// Remove the setup pointed to by path.
+		// Returns true on success and false otherwise.
+		public bool Remove(string path) {
+			int idx = this.SetupPath.IndexOf(path);
+
+			if (idx < 0) {
+				return false;
+			}
+
+			this.CarName.RemoveAt(idx);
+			this.SetupName.RemoveAt(idx);
+			this.SetupPath.RemoveAt(idx);
+			this.PressureFL.RemoveAt(idx);
+			this.ToeFL.RemoveAt(idx);
+			this.CamberFL.RemoveAt(idx);
+			this.CasterFL.RemoveAt(idx);
+			this.PressureFR.RemoveAt(idx);
+			this.ToeFR.RemoveAt(idx);
+			this.CamberFR.RemoveAt(idx);
+			this.CasterFR.RemoveAt(idx);
+			this.PressureRL.RemoveAt(idx);
+			this.ToeRL.RemoveAt(idx);
+			this.CamberRL.RemoveAt(idx);
+			this.PressureRR.RemoveAt(idx);
+			this.ToeRR.RemoveAt(idx);
+			this.CamberRR.RemoveAt(idx);
+			this.TC1.RemoveAt(idx);
+			this.TC2.RemoveAt(idx);
+			this.ABS.RemoveAt(idx);
+			this.ECU.RemoveAt(idx);
+			this.Fuel.RemoveAt(idx);
+			this.Tyre.RemoveAt(idx);
+			this.PadF.RemoveAt(idx);
+			this.PadR.RemoveAt(idx);
+			this.SteeringRatio.RemoveAt(idx);
+			this.ARBF.RemoveAt(idx);
+			this.BrakePower.RemoveAt(idx);
+			this.BrakeBias.RemoveAt(idx);
+			this.ARBR.RemoveAt(idx);
+			this.Preload.RemoveAt(idx);
+			this.WheelRateFL.RemoveAt(idx);
+			this.BumpStopRateFL.RemoveAt(idx);
+			this.BumpStopRangeFL.RemoveAt(idx);
+			this.WheelRateFR.RemoveAt(idx);
+			this.BumpStopRateFR.RemoveAt(idx);
+			this.BumpStopRangeFR.RemoveAt(idx);
+			this.WheelRateRL.RemoveAt(idx);
+			this.BumpStopRateRL.RemoveAt(idx);
+			this.BumpStopRangeRL.RemoveAt(idx);
+			this.WheelRateRR.RemoveAt(idx);
+			this.BumpStopRateRR.RemoveAt(idx);
+			this.BumpStopRangeRR.RemoveAt(idx);
+			this.BumpSlowFL.RemoveAt(idx);
+			this.BumpFastFL.RemoveAt(idx);
+			this.ReboundSlowFL.RemoveAt(idx);
+			this.ReboundFastFL.RemoveAt(idx);
+			this.BumpSlowFR.RemoveAt(idx);
+			this.BumpFastFR.RemoveAt(idx);
+			this.ReboundSlowFR.RemoveAt(idx);
+			this.ReboundFastFR.RemoveAt(idx);
+			this.BumpSlowRL.RemoveAt(idx);
+			this.BumpFastRL.RemoveAt(idx);
+			this.ReboundSlowRL.RemoveAt(idx);
+			this.ReboundFastRL.RemoveAt(idx);
+			this.BumpSlowRR.RemoveAt(idx);
+			this.BumpFastRR.RemoveAt(idx);
+			this.ReboundSlowRR.RemoveAt(idx);
+			this.ReboundFastRR.RemoveAt(idx);
+			this.RideHeightF.RemoveAt(idx);
+			this.Splitter.RemoveAt(idx);
+			this.DuctF.RemoveAt(idx);
+			this.RideHeightR.RemoveAt(idx);
+			this.Wing.RemoveAt(idx);
+			this.DuctR.RemoveAt(idx);
+
+			return true;
+		}
 	}
 }
