@@ -20,6 +20,7 @@ namespace SetupDiff {
 
 		public OCStr CarName {get;set;} = new OCStr();
 		public OCStr SetupName {get;set;} = new OCStr();
+		public OCStr SetupPath {get;set;} = new OCStr();
 
 		// tyres: front left
 		public OCS PressureFL {get;set;} = new OCS();
@@ -127,7 +128,8 @@ namespace SetupDiff {
 			var bsw = s.Mech.BumpStopWindow;
 
 			this.CarName.Add(car.Name);
-			this.SetupName.Add(s.SetupName);
+			this.SetupName.Add(s.Name);
+			this.SetupPath.Add(s.Path);
 
 			this.PressureFL.Add(car.Pressure.Apply(tp[FL]));
 			this.PressureFR.Add(car.Pressure.Apply(tp[FR]));
