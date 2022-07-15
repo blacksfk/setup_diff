@@ -5,8 +5,11 @@ using System.Text.Json;
 namespace SetupDiff {
 	// Mimics the ACC setup file JSON structure.
 	public class Setup {
+		// name and path are set after the setup is loaded from the JSON file.
+		public string Name {get;set;} = string.Empty;
+		public string Path {get;set;} = string.Empty;
+
 		public string CarName {get;set;} = string.Empty;
-		public string SetupName {get;set;} = string.Empty;
 		public BasicSetup BasicSetup {get;set;} = new BasicSetup();
 		public AdvancedSetup AdvancedSetup {get;set;} = new AdvancedSetup();
 
@@ -85,8 +88,9 @@ namespace SetupDiff {
 				throw new Exception(string.Format("Could not load setup: {0}", path));
 			}
 
-			// set the setup name
-			setup.SetupName = Path.GetFileName(path);
+			// set the setup name and path
+			setup.Path = path;
+			setup.Name = System.IO.Path.GetFileNameWithoutExtension(path);
 
 			return setup;
 		}
