@@ -17,225 +17,167 @@
 					<TextBlock Text="{Binding Name}"/>
 				</HierarchicalDataTemplate>
 				<DataTemplate DataType="{x:Type local:SetupNode}">
-					<TextBlock Text="{Binding Name}"/>
+					<local:SetupTreeNode FileName="{Binding Name}" FilePath="{Binding Path}" MouseLeftButtonDown="addSetup"/>
 				</DataTemplate>
 			</TreeView.Resources>
 		</TreeView>
-		<ScrollViewer VerticalScrollBarVisibility="Auto">
-			<StackPanel Orientation="Horizontal">
-				<ItemsControl ItemsSource="{Binding Setups}">
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<StackPanel>
-								<TextBlock Text="{Binding CarName}"/>
-								<TextBlock Text="{Binding SetupName}"/>
+			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+				<StackPanel Style="{StaticResource content}">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Width="200"/>
+						<!-- for no apparent fucking reason an itemscontrol can't tell
+									you the index at which the item is stored (WHY NOT?!??!?!). and the
+									itemcontainergenerator methods all return null for no apparent
+									fucking reason. this has to be the most unnecessary garbage of
+									all time just to get the index of the item to be deleted -->
+						<ItemsControl ItemsSource="{Binding Setups.SetupPath}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<StackPanel Orientation="Horizontal"/>
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Button Click="removeSetup" Tag="{Binding}" Style="{StaticResource delBtn}" ToolTip="Click to remove this setup">X</Button>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</StackPanel>
+					<local:SetupCollectionHeader Values="{Binding Setups.SetupName}"/>
+					<local:SetupCollectionHeader Values="{Binding Setups.CarName}"/>
 
-								<!-- Tyres -->
-								<!-- front -->
-								<StackPanel Orientation="Horizontal">
-									<StackPanel>
-										<Label>FL</Label>
-										<Label>Pressure</Label>
-										<TextBlock Text="{Binding PressureFL.Value}"/>
-										<Label>Toe</Label>
-										<TextBlock Text="{Binding ToeFL.Value}"/>
-										<Label>Camber</Label>
-										<TextBlock Text="{Binding CamberFL.Value}"/>
-										<Label>Caster</Label>
-										<TextBlock Text="{Binding CasterFL.Value}"/>
-									</StackPanel>
-									<StackPanel>
-										<Label>FR</Label>
-										<Label>Pressure</Label>
-										<TextBlock Text="{Binding PressureFR.Value}"/>
-										<Label>Toe</Label>
-										<TextBlock Text="{Binding ToeFR.Value}"/>
-										<Label>Camber</Label>
-										<TextBlock Text="{Binding CamberFR.Value}"/>
-										<Label>Caster</Label>
-										<TextBlock Text="{Binding CasterFR.Value}"/>
-									</StackPanel>
-								</StackPanel>
+					<StackPanel Style="{StaticResource content}">
+						<TextBlock Style="{StaticResource header}">Tyres</TextBlock>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Front Left</TextBlock>
+							<local:SetupCollectionRow Header="Pressure" Values="{Binding Setups.PressureFL}"/>
+							<local:SetupCollectionRow Header="Toe" Values="{Binding Setups.ToeFL}"/>
+							<local:SetupCollectionRow Header="Camber" Values="{Binding Setups.CamberFL}"/>
+							<local:SetupCollectionRow Header="Caster" Values="{Binding Setups.CasterFL}"/>
+						</StackPanel>
 
-								<!-- rear -->
-								<StackPanel Orientation="Horizontal">
-									<StackPanel>
-										<Label>RL</Label>
-										<Label>Pressure</Label>
-										<TextBlock Text="{Binding PressureRL.Value}"/>
-										<Label>Toe</Label>
-										<TextBlock Text="{Binding ToeRL.Value}"/>
-										<Label>Camber</Label>
-										<TextBlock Text="{Binding CamberRL.Value}"/>
-									</StackPanel>
-									<StackPanel>
-										<Label>RR</Label>
-										<Label>Pressure</Label>
-										<TextBlock Text="{Binding PressureRR.Value}"/>
-										<Label>Toe</Label>
-										<TextBlock Text="{Binding ToeRR.Value}"/>
-										<Label>Camber</Label>
-										<TextBlock Text="{Binding CamberRR.Value}"/>
-									</StackPanel>
-								</StackPanel>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Front Right</TextBlock>
+							<local:SetupCollectionRow Header="Pressure" Values="{Binding Setups.PressureFR}"/>
+							<local:SetupCollectionRow Header="Toe" Values="{Binding Setups.ToeFR}"/>
+							<local:SetupCollectionRow Header="Camber" Values="{Binding Setups.CamberFR}"/>
+							<local:SetupCollectionRow Header="Caster" Values="{Binding Setups.CasterFR}"/>
+						</StackPanel>
 
-								<!-- Electronics -->
-								<StackPanel>
-									<Label>TC1</Label>
-									<TextBlock Text="{Binding TC1.Value}"/>
-									<Label>TC2</Label>
-									<TextBlock Text="{Binding TC2.Value}"/>
-									<Label>ABS</Label>
-									<TextBlock Text="{Binding ABS.Value}"/>
-									<Label>ECU</Label>
-									<TextBlock Text="{Binding ECU.Value}"/>
-								</StackPanel>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Rear Left</TextBlock>
+							<local:SetupCollectionRow Header="Pressure" Values="{Binding Setups.PressureRL}"/>
+							<local:SetupCollectionRow Header="Toe" Values="{Binding Setups.ToeRL}"/>
+							<local:SetupCollectionRow Header="Camber" Values="{Binding Setups.CamberRL}"/>
+						</StackPanel>
 
-								<!-- Strategy -->
-								<StackPanel>
-									<Label>Fuel</Label>
-									<TextBlock Text="{Binding Fuel.Value}"/>
-									<Label>Tyre</Label>
-									<TextBlock Text="{Binding Tyre.Value}"/>
-									<Label>Front brake compound</Label>
-									<TextBlock Text="{Binding PadF.Value}"/>
-									<Label>Rear brake compound</Label>
-									<TextBlock Text="{Binding PadR.Value}"/>
-									<Label>Steering ratio</Label>
-									<TextBlock Text="{Binding SteeringRatio.Value}"/>
-								</StackPanel>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Rear Right</TextBlock>
+							<local:SetupCollectionRow Header="Pressure" Values="{Binding Setups.PressureRR}"/>
+							<local:SetupCollectionRow Header="Toe" Values="{Binding Setups.ToeRR}"/>
+							<local:SetupCollectionRow Header="Camber" Values="{Binding Setups.CamberRR}"/>
+						</StackPanel>
+					</StackPanel>
 
-								<!-- Mechanical -->
-								<StackPanel>
-									<Label>Front ARB</Label>
-									<TextBlock Text="{Binding ARBF.Value}"/>
-									<Label>Brake power</Label>
-									<TextBlock Text="{Binding BrakePower.Value}"/>
-									<Label>Brake bias</Label>
-									<TextBlock Text="{Binding BrakeBias.Value}"/>
+					<StackPanel Style="{StaticResource content}">
+						<TextBlock Style="{StaticResource header}">Electronics</TextBlock>
+						<local:SetupCollectionRow Header="TC1" Values="{Binding Setups.TC1}"/>
+						<local:SetupCollectionRow Header="TC2" Values="{Binding Setups.TC2}"/>
+						<local:SetupCollectionRow Header="ABS" Values="{Binding Setups.ABS}"/>
+						<local:SetupCollectionRow Header="ECU" Values="{Binding Setups.ECU}"/>
+					</StackPanel>
 
-									<!-- front -->
-									<StackPanel Orientation="Horizontal">
-										<StackPanel>
-											<Label>FL</Label>
-											<Label>Wheel rate</Label>
-											<TextBlock Text="{Binding WheelRateFL.Value}"/>
-											<Label>Bumpstop rate</Label>
-											<TextBlock Text="{Binding BumpstopRateFL.Value}"/>
-											<Label>Bumpstop range</Label>
-											<TextBlock Text="{Binding BumpstopRangeFL.Value}"/>
-										</StackPanel>
-										<StackPanel>
-											<Label>FR</Label>
-											<Label>Wheel rate</Label>
-											<TextBlock Text="{Binding WheelRateFR.Value}"/>
-											<Label>Bumpstop rate</Label>
-											<TextBlock Text="{Binding BumpstopRateFR.Value}"/>
-											<Label>Bumpstop range</Label>
-											<TextBlock Text="{Binding BumpstopRangeFR.Value}"/>
-										</StackPanel>
-									</StackPanel>
+					<StackPanel Style="{StaticResource content}">
+						<TextBlock Style="{StaticResource header}">Strategy</TextBlock>
+						<local:SetupCollectionRow Header="Fuel" Values="{Binding Setups.Fuel}"/>
+						<local:SetupCollectionRow Header="Tyre" Values="{Binding Setups.Tyre}"/>
+						<local:SetupCollectionRow Header="Front pads" Values="{Binding Setups.PadF}"/>
+						<local:SetupCollectionRow Header="Rear pads" Values="{Binding Setups.PadR}"/>
+					</StackPanel>
 
-									<!-- rear -->
-									<StackPanel Orientation="Horizontal">
-										<StackPanel>
-											<Label>Wheel rate</Label>
-											<TextBlock Text="{Binding WheelRateRL.Value}"/>
-											<Label>Bumpstop rate</Label>
-											<TextBlock Text="{Binding BumpstopRateRL.Value}"/>
-											<Label>Bumpstop range</Label>
-											<TextBlock Text="{Binding BumpstopRangeRL.Value}"/>
-										</StackPanel>
-										<StackPanel>
-											<Label>Wheel rate</Label>
-											<TextBlock Text="{Binding WheelRateRR.Value}"/>
-											<Label>Bumpstop rate</Label>
-											<TextBlock Text="{Binding BumpstopRateRR.Value}"/>
-											<Label>Bumpstop range</Label>
-											<TextBlock Text="{Binding BumpstopRangeRR.Value}"/>
-										</StackPanel>
-									</StackPanel>
+					<StackPanel Style="{StaticResource content}">
+						<TextBlock Style="{StaticResource header}">Mechanical Balance</TextBlock>
+						<local:SetupCollectionRow Header="Steering ratio" Values="{Binding Setups.SteeringRatio}"/>
+						<local:SetupCollectionRow Header="ARB front" Values="{Binding Setups.ARBF}"/>
+						<local:SetupCollectionRow Header="Brake power" Values="{Binding Setups.BrakePower}"/>
+						<local:SetupCollectionRow Header="Brake bias" Values="{Binding Setups.BrakeBias}"/>
+						<local:SetupCollectionRow Header="ARB rear" Values="{Binding Setups.ARBR}"/>
+						<local:SetupCollectionRow Header="Preload" Values="{Binding Setups.Preload}"/>
 
-									<Label>Rear ARB</Label>
-									<TextBlock Text="{Binding ARBR.Value}"/>
-									<Label>Preload</Label>
-									<TextBlock Text="{Binding Preload.Value}"/>
-								</StackPanel>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Front Left</TextBlock>
+							<local:SetupCollectionRow Header="Wheel rate" Values="{Binding Setups.WheelRateFL}"/>
+							<local:SetupCollectionRow Header="Bump stop rate" Values="{Binding Setups.BumpStopRateFL}"/>
+							<local:SetupCollectionRow Header="Bump stop range" Values="{Binding Setups.BumpStopRangeFL}"/>
+						</StackPanel>
 
-								<!-- Dampers -->
-								<StackPanel>
-									<StackPanel Orientation="Horizontal">
-										<StackPanel>
-											<Label>Bump</Label>
-											<TextBlock Text="{Binding BumpSlowFL.Value}"/>
-											<Label>Fast bump</Label>
-											<TextBlock Text="{Binding BumpFastFL.Value}"/>
-											<Label>Rebound</Label>
-											<TextBlock Text="{Binding ReboundSlowFL.Value}"/>
-											<Label>Fast rebound</Label>
-											<TextBlock Text="{Binding ReboundFastFL.Value}"/>
-										</StackPanel>
-										<StackPanel>
-											<Label>Bump</Label>
-											<TextBlock Text="{Binding BumpSlowFR.Value}"/>
-											<Label>Fast bump</Label>
-											<TextBlock Text="{Binding BumpFastFR.Value}"/>
-											<Label>Rebound</Label>
-											<TextBlock Text="{Binding ReboundSlowFR.Value}"/>
-											<Label>Fast rebound</Label>
-											<TextBlock Text="{Binding ReboundFastFR.Value}"/>
-										</StackPanel>
-									</StackPanel>
-									<StackPanel Orientation="Horizontal">
-										<StackPanel>
-											<Label>Bump</Label>
-											<TextBlock Text="{Binding BumpSlowRL.Value}"/>
-											<Label>Fast bump</Label>
-											<TextBlock Text="{Binding BumpFastRL.Value}"/>
-											<Label>Rebound</Label>
-											<TextBlock Text="{Binding ReboundSlowRL.Value}"/>
-											<Label>Fast rebound</Label>
-											<TextBlock Text="{Binding ReboundFastRL.Value}"/>
-										</StackPanel>
-										<StackPanel>
-											<Label>Bump</Label>
-											<TextBlock Text="{Binding BumpSlowRR.Value}"/>
-											<Label>Fast bump</Label>
-											<TextBlock Text="{Binding BumpFastRR.Value}"/>
-											<Label>Rebound</Label>
-											<TextBlock Text="{Binding ReboundSlowRR.Value}"/>
-											<Label>Fast rebound</Label>
-											<TextBlock Text="{Binding ReboundFastRR.Value}"/>
-										</StackPanel>
-									</StackPanel>
-								</StackPanel>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Front Right</TextBlock>
+							<local:SetupCollectionRow Header="Wheel rate" Values="{Binding Setups.WheelRateFR}"/>
+							<local:SetupCollectionRow Header="Bump stop rate" Values="{Binding Setups.BumpStopRateFR}"/>
+							<local:SetupCollectionRow Header="Bump stop range" Values="{Binding Setups.BumpStopRangeFR}"/>
+						</StackPanel>
 
-								<!-- Aero -->
-								<StackPanel Orientation="Horizontal">
-									<StackPanel>
-										<Label>Front</Label>
-										<Label>Ride height</Label>
-										<TextBlock Text="{Binding RideHeightF.Value}"/>
-										<Label>Splitter</Label>
-										<TextBlock Text="{Binding Splitter.Value}"/>
-										<Label>Duct</Label>
-										<TextBlock Text="{Binding DuctF.Value}"/>
-									</StackPanel>
-									<StackPanel>
-										<Label>Rear</Label>
-										<Label>Ride height</Label>
-										<TextBlock Text="{Binding RideHeightR.Value}"/>
-										<Label>Wing</Label>
-										<TextBlock Text="{Binding Wing.Value}"/>
-										<Label>Duct</Label>
-										<TextBlock Text="{Binding DuctR.Value}"/>
-									</StackPanel>
-								</StackPanel>
-							</StackPanel>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-			</StackPanel>
-		</ScrollViewer>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Rear Left</TextBlock>
+							<local:SetupCollectionRow Header="Wheel rate" Values="{Binding Setups.WheelRateRL}"/>
+							<local:SetupCollectionRow Header="Bump stop rate" Values="{Binding Setups.BumpStopRateRL}"/>
+							<local:SetupCollectionRow Header="Bump stop range" Values="{Binding Setups.BumpStopRangeRL}"/>
+						</StackPanel>
+
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Rear Right</TextBlock>
+							<local:SetupCollectionRow Header="Wheel rate" Values="{Binding Setups.WheelRateRR}"/>
+							<local:SetupCollectionRow Header="Bump stop rate" Values="{Binding Setups.BumpStopRateRR}"/>
+							<local:SetupCollectionRow Header="Bump stop range" Values="{Binding Setups.BumpStopRangeRR}"/>
+						</StackPanel>
+					</StackPanel>
+
+					<StackPanel Style="{StaticResource content}">
+						<TextBlock Style="{StaticResource header}">Dampers</TextBlock>
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Front Left</TextBlock>
+							<local:SetupCollectionRow Header="Bump" Values="{Binding Setups.BumpSlowFL}"/>
+							<local:SetupCollectionRow Header="Fast bump" Values="{Binding Setups.BumpFastFL}"/>
+							<local:SetupCollectionRow Header="Rebound" Values="{Binding Setups.ReboundSlowFL}"/>
+							<local:SetupCollectionRow Header="Fast rebound" Values="{Binding Setups.ReboundFastFL}"/>
+						</StackPanel>
+
+						<StackPanel Style="{StaticResource content}">
+						<TextBlock Style="{StaticResource subheader}">Front Right</TextBlock>
+						<local:SetupCollectionRow Header="Bump" Values="{Binding Setups.BumpSlowFR}"/>
+						<local:SetupCollectionRow Header="Fast bump" Values="{Binding Setups.BumpFastFR}"/>
+						<local:SetupCollectionRow Header="Rebound" Values="{Binding Setups.ReboundSlowFR}"/>
+						<local:SetupCollectionRow Header="Fast rebound" Values="{Binding Setups.ReboundFastFR}"/>
+						</StackPanel>
+
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Rear Left</TextBlock>
+							<local:SetupCollectionRow Header="Bump" Values="{Binding Setups.BumpSlowRL}"/>
+							<local:SetupCollectionRow Header="Fast bump" Values="{Binding Setups.BumpFastRL}"/>
+							<local:SetupCollectionRow Header="Rebound" Values="{Binding Setups.ReboundSlowRL}"/>
+							<local:SetupCollectionRow Header="Fast rebound" Values="{Binding Setups.ReboundFastRL}"/>
+						</StackPanel>
+
+						<StackPanel Style="{StaticResource content}">
+							<TextBlock Style="{StaticResource subheader}">Rear Right</TextBlock>
+							<local:SetupCollectionRow Header="Bump" Values="{Binding Setups.BumpSlowRR}"/>
+							<local:SetupCollectionRow Header="Fast bump" Values="{Binding Setups.BumpFastRR}"/>
+							<local:SetupCollectionRow Header="Rebound" Values="{Binding Setups.ReboundSlowRR}"/>
+							<local:SetupCollectionRow Header="Fast rebound" Values="{Binding Setups.ReboundFastRR}"/>
+						</StackPanel>
+					</StackPanel>
+
+					<StackPanel Style="{StaticResource content}">
+						<TextBlock Style="{StaticResource header}">Aero</TextBlock>
+						<local:SetupCollectionRow Header="Front ride height" Values="{Binding Setups.RideHeightF}"/>
+						<local:SetupCollectionRow Header="Splitter" Values="{Binding Setups.Splitter}"/>
+						<local:SetupCollectionRow Header="Front duct" Values="{Binding Setups.DuctF}"/>
+						<local:SetupCollectionRow Header="Rear ride height" Values="{Binding Setups.RideHeightR}"/>
+						<local:SetupCollectionRow Header="Wing" Values="{Binding Setups.Wing}"/>
+						<local:SetupCollectionRow Header="Rear duct" Values="{Binding Setups.DuctR}"/>
+					</StackPanel>
+				</StackPanel>
+			</ScrollViewer>
 	</DockPanel>
 </Window>
