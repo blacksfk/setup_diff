@@ -5,49 +5,50 @@ namespace SetupDiff {
 		public string ID {get;set;} = string.Empty;
 		public string Name {get;set;} = string.Empty;
 
-		public Ref Pressure {get;set;} = new Ref();
+		public ReferencePoint Pressure {get;set;} = new ReferencePoint();
 
 		// only two reference points; front and rear
-		public Ref[] Toe {get;set;} = new Ref[2];
-		public Ref[] Camber {get;set;} = new Ref[2];
+		public ReferencePoint[] Toe {get;set;} = new ReferencePoint[2];
+		public ReferencePoint[] Camber {get;set;} = new ReferencePoint[2];
 
 		// should be the same for both front wheels
-		public Ref Caster {get;set;} = new Ref();
+		public ReferencePoint Caster {get;set;} = new ReferencePoint();
 
-		public Ref TC1 {get;set;} = new Ref();
-		public Ref TC2 {get;set;} = new Ref();
-		public Ref ABS {get;set;} = new Ref();
-		public Ref ECU {get;set;} = new Ref();
+		public ReferencePoint TC1 {get;set;} = new ReferencePoint();
+		public ReferencePoint TC2 {get;set;} = new ReferencePoint();
+		public ReferencePoint ABS {get;set;} = new ReferencePoint();
+		public ReferencePoint ECU {get;set;} = new ReferencePoint();
 
-		public Ref Fuel {get;set;} = new Ref();
-		public Ref Tyre {get;set;} = new Ref();
-		public Ref Pads {get;set;} = new Ref();
+		public ReferencePoint Fuel {get;set;} = new ReferencePoint();
+		public ReferencePoint Tyre {get;set;} = new ReferencePoint();
+		public ReferencePoint Pads {get;set;} = new ReferencePoint();
 
-		public Ref ARB {get;set;} = new Ref();
-		public Ref BrakePower {get;set;} = new Ref();
-		public Ref BrakeBias {get;set;} = new Ref();
-		public Ref SteeringRatio {get;set;} = new Ref();
+		public ReferencePoint ARB {get;set;} = new ReferencePoint();
+		public ReferencePoint BrakePower {get;set;} = new ReferencePoint();
+		public ReferencePoint BrakeBias {get;set;} = new ReferencePoint();
+		public ReferencePoint SteeringRatio {get;set;} = new ReferencePoint();
 
 		// two reference points for both the front and rear suspension
-		public Ref[] WheelRate {get;set;} = new Ref[2];
-		public Ref[] BumpStopRate {get;set;} = new Ref[2];
+		// wheel rate is expected to be an array of values
+		public ReferenceList[] WheelRate {get;set;} = new ReferenceList[2];
+		public ReferencePoint[] BumpStopRate {get;set;} = new ReferencePoint[2];
 
-		public Ref BumpStopRange {get;set;} = new Ref();
-		public Ref Preload {get;set;} = new Ref();
+		public ReferencePoint BumpStopRange {get;set;} = new ReferencePoint();
+		public ReferencePoint Preload {get;set;} = new ReferencePoint();
 
 		// all damper settings start at the same value for each corner
-		public Ref BumpSlow {get;set;} = new Ref();
-		public Ref BumpFast {get;set;} = new Ref();
-		public Ref ReboundSlow {get;set;} = new Ref();
-		public Ref ReboundFast {get;set;} = new Ref();
+		public ReferencePoint BumpSlow {get;set;} = new ReferencePoint();
+		public ReferencePoint BumpFast {get;set;} = new ReferencePoint();
+		public ReferencePoint ReboundSlow {get;set;} = new ReferencePoint();
+		public ReferencePoint ReboundFast {get;set;} = new ReferencePoint();
 
 		// front and rear ride heights
-		public Ref[] RideHeight {get;set;} = new Ref[2];
+		public ReferencePoint[] RideHeight {get;set;} = new ReferencePoint[2];
 
 		// both ducts range from 1 through 6
-		public Ref Duct {get;set;} = new Ref();
+		public ReferencePoint Duct {get;set;} = new ReferencePoint();
 
-		public Ref Splitter {get;set;} = new Ref();
-		public Ref Wing {get;set;} = new Ref();
+		public ReferencePoint Splitter {get;set;} = new ReferencePoint();
+		public ReferencePoint Wing {get;set;} = new ReferencePoint();
 	}
 }
