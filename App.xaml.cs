@@ -75,7 +75,7 @@ namespace SetupDiff {
 			string raw = File.ReadAllText(path);
 			List<Car>? cars = JsonSerializer.Deserialize<List<Car>>(raw, options);
 
-		if (cars == null) {
+			if (cars == null) {
 				throw new Exception(string.Format("{0} is empty!", path));
 			}
 
