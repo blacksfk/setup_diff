@@ -8,7 +8,7 @@
 		<Style x:Key="row" TargetType="StackPanel">
 			<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="Background" Value="CornflowerBlue"/>
+					<Setter Property="Background" Value="#e2e2e2"/>
 				</Trigger>
 			</Style.Triggers>
 		</Style>
