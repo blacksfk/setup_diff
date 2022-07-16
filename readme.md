@@ -2,7 +2,11 @@
 Compare setups locally!
 
 ## Compilation
-`dotnet build`
+### Debugging
+`dotnet build` or `dotnet run`. Remember to pass the path to `cars.json` if it isn't in the current directory.
+
+### Publishing
+`dotnet publish --no-self-contained -c Release`. .NET runtime required. The single-file, self-contained executable is ridicuously large (>150MiB).
 
 ## Running
 The program expects the working directory to contain `cars.json`. Either create your own in the format described below or use the one in this repo.
