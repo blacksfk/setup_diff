@@ -19,7 +19,7 @@
 	</UserControl.Resources>
 	<Border Style="{StaticResource rowBorder}">
 		<StackPanel Orientation="Horizontal" x:Name="sp" Style="{StaticResource row}">
-			<TextBlock Width="{Binding CellWidth}" Text="{Binding Header}" Style="{StaticResource cell}"/>
+			<TextBlock Text="{Binding Header}" Style="{StaticResource cell}"/>
 			<ItemsControl ItemsSource="{Binding Values}">
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
@@ -28,7 +28,7 @@
 				</ItemsControl.ItemsPanel>
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
-						<TextBlock Width="{Binding Path=DataContext.CellWidth, RelativeSource={RelativeSource AncestorType=StackPanel}}" Text="{Binding Value}" Style="{StaticResource cell}"/>
+						<TextBlock Text="{Binding Value}" Style="{StaticResource cell}"/>
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>

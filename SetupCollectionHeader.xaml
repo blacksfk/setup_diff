@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	mc:Ignorable="d">
 	<StackPanel Orientation="Horizontal" x:Name="sp">
-		<TextBlock Width="{Binding CellWidth}"/>
+		<TextBlock Style="{StaticResource cell}"/>
 		<ItemsControl ItemsSource="{Binding Values}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
@@ -14,7 +14,7 @@
 			</ItemsControl.ItemsPanel>
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
-					<TextBlock Width="{Binding Path=DataContext.CellWidth, RelativeSource={RelativeSource AncestorType=StackPanel}}" Text="{Binding}" Style="{StaticResource header}"/>
+					<TextBlock Text="{Binding}" Style="{StaticResource tableHeader}"/>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
