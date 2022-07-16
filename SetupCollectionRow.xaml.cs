@@ -20,14 +20,6 @@ namespace SetupDiff {
 				new FrameworkPropertyMetadata(
 					new ObservableCollection<Setting>()));
 
-		public static readonly DependencyProperty CellWidthProp =
-			DependencyProperty.Register(
-				"CellWidth",
-				typeof (int),
-				typeof (SetupCollectionRow),
-				new FrameworkPropertyMetadata(
-					200));
-
 		public SetupCollectionRow() {
 			this.InitializeComponent();
 			this.sp.DataContext = this;
@@ -48,15 +40,6 @@ namespace SetupDiff {
 			}
 			set {
 				SetValue(ValsProp, value);
-			}
-		}
-
-		public int CellWidth {
-			get {
-				return (int) GetValue(CellWidthProp);
-			}
-			set {
-				SetValue(CellWidthProp, value);
 			}
 		}
 	}
