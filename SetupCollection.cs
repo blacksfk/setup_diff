@@ -154,9 +154,8 @@ namespace SetupDiff {
 			this.ABS.Add(car.ABS.Apply(s.Elec.ABS));
 			this.ECU.Add(car.ECU.Apply(s.Elec.ECUMap));
 
-			// strategy TODO: apply the correct compound
 			this.Fuel.Add(car.Fuel.Apply(s.Strat.Fuel));
-			this.Tyre.Add(car.Tyre.Apply(s.Strat.TyreSet));
+			this.Tyre.Add(car.TyreCompound(s.Tyres.TyreCompound, s.Strat.TyreSet));
 			this.PadF.Add(car.Pads.Apply(s.Strat.FrontBrakePadCompound));
 			this.PadR.Add(car.Pads.Apply(s.Strat.RearBrakePadCompound));
 

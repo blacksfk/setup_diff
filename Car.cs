@@ -50,5 +50,20 @@ namespace SetupDiff {
 
 		public ReferencePoint Splitter {get;set;} = new ReferencePoint();
 		public ReferencePoint Wing {get;set;} = new ReferencePoint();
+
+		// A value of 1 indicates wet weather compound.
+		private static int WET_COMPOUND = 1;
+
+		// Special case: check the selected compound type for the tyre
+		// set offset.
+		public Setting TyreCompound(int compound, int offset) {
+			if (compound == WET_COMPOUND) {
+				// ensure the diff works correctly by assigning
+				// an offset that won't be present in the setup
+				return new Setting(-1, "WET");
+			}
+
+			return this.Tyre.Apply(offset);
+		}
 	}
 }
