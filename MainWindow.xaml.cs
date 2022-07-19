@@ -88,13 +88,14 @@ namespace SetupDiff {
 			this.setups.Append(setup, car);
 		}
 
-		// Setup column "X" button event handler. Removes the setup
-		// specified in the button's tag from the comparison.
-		private void removeSetup(object sender, RoutedEventArgs e) {
-			string path = (string) ((Button) sender).Tag;
+		// RemoveSetup command handler. Expects the setup ID to be stored
+		// as a string in the args' Parameter property.
+		private void removeSetupExecuted(object sender, ExecutedRoutedEventArgs e) {
+			string id = (string) e.Parameter;
 
-			if (!this.setups.Remove(path)) {
-				MessageBox.Show(string.Format("Could not remove setup: {0}", path));
+			if (!this.setups.Remove(id)) {
+				MessageBox.Show(string.Format(
+					"Could not remove setup {0} from comparison table", id));
 			}
 		}
 	}
