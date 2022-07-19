@@ -23,98 +23,98 @@ namespace SetupDiff {
 		public OCStr SetupPath {get;set;} = new OCStr();
 
 		// tyres: front left
-		public OCS PressureFL {get;set;} = new OCS();
-		public OCS ToeFL {get;set;} = new OCS();
-		public OCS CamberFL {get;set;} = new OCS();
-		public OCS CasterFL {get;set;} = new OCS();
+		public OCS PressureFL {get;} = new OCS();
+		public OCS ToeFL {get;} = new OCS();
+		public OCS CamberFL {get;} = new OCS();
+		public OCS CasterFL {get;} = new OCS();
 
 		// tyres: front right
-		public OCS PressureFR {get;set;} = new OCS();
-		public OCS ToeFR {get;set;} = new OCS();
-		public OCS CamberFR {get;set;} = new OCS();
-		public OCS CasterFR {get;set;} = new OCS();
+		public OCS PressureFR {get;} = new OCS();
+		public OCS ToeFR {get;} = new OCS();
+		public OCS CamberFR {get;} = new OCS();
+		public OCS CasterFR {get;} = new OCS();
 
 		// tyres: rear left
-		public OCS PressureRL {get;set;} = new OCS();
-		public OCS ToeRL {get;set;} = new OCS();
-		public OCS CamberRL {get;set;} = new OCS();
+		public OCS PressureRL {get;} = new OCS();
+		public OCS ToeRL {get;} = new OCS();
+		public OCS CamberRL {get;} = new OCS();
 
 		// tyres: rear right
-		public OCS PressureRR {get;set;} = new OCS();
-		public OCS ToeRR {get;set;} = new OCS();
-		public OCS CamberRR {get;set;} = new OCS();
+		public OCS PressureRR {get;} = new OCS();
+		public OCS ToeRR {get;} = new OCS();
+		public OCS CamberRR {get;} = new OCS();
 
 		// electronics
-		public OCS TC1 {get;set;} = new OCS();
-		public OCS TC2 {get;set;} = new OCS();
-		public OCS ABS {get;set;} = new OCS();
-		public OCS ECU {get;set;} = new OCS();
+		public OCS TC1 {get;} = new OCS();
+		public OCS TC2 {get;} = new OCS();
+		public OCS ABS {get;} = new OCS();
+		public OCS ECU {get;} = new OCS();
 
 		// strategy
-		public OCS Fuel {get;set;} = new OCS();
-		public OCS Tyre {get;set;} = new OCS();
-		public OCS PadF {get;set;} = new OCS();
-		public OCS PadR {get;set;} = new OCS();
+		public OCS Fuel {get;} = new OCS();
+		public OCS Tyre {get;} = new OCS();
+		public OCS PadF {get;} = new OCS();
+		public OCS PadR {get;} = new OCS();
 
 		// mechanical
-		public OCS SteeringRatio {get;set;} = new OCS();
-		public OCS ARBF {get;set;} = new OCS();
-		public OCS BrakePower {get;set;} = new OCS();
-		public OCS BrakeBias {get;set;} = new OCS();
-		public OCS ARBR {get;set;} = new OCS();
-		public OCS Preload {get;set;} = new OCS();
+		public OCS SteeringRatio {get;} = new OCS();
+		public OCS ARBF {get;} = new OCS();
+		public OCS BrakePower {get;} = new OCS();
+		public OCS BrakeBias {get;} = new OCS();
+		public OCS ARBR {get;} = new OCS();
+		public OCS Preload {get;} = new OCS();
 
 		// mechanical: front left
-		public OCS WheelRateFL {get;set;} = new OCS();
-		public OCS BumpStopRateFL {get;set;} = new OCS();
-		public OCS BumpStopRangeFL {get;set;} = new OCS();
+		public OCS WheelRateFL {get;} = new OCS();
+		public OCS BumpStopRateFL {get;} = new OCS();
+		public OCS BumpStopRangeFL {get;} = new OCS();
 
 		// mechanical: front right
-		public OCS WheelRateFR {get;set;} = new OCS();
-		public OCS BumpStopRateFR {get;set;} = new OCS();
-		public OCS BumpStopRangeFR {get;set;} = new OCS();
+		public OCS WheelRateFR {get;} = new OCS();
+		public OCS BumpStopRateFR {get;} = new OCS();
+		public OCS BumpStopRangeFR {get;} = new OCS();
 
 		// mechanical: rear left
-		public OCS WheelRateRL {get;set;} = new OCS();
-		public OCS BumpStopRateRL {get;set;} = new OCS();
-		public OCS BumpStopRangeRL {get;set;} = new OCS();
+		public OCS WheelRateRL {get;} = new OCS();
+		public OCS BumpStopRateRL {get;} = new OCS();
+		public OCS BumpStopRangeRL {get;} = new OCS();
 
 		// mechanical: rear right
-		public OCS WheelRateRR {get;set;} = new OCS();
-		public OCS BumpStopRateRR {get;set;} = new OCS();
-		public OCS BumpStopRangeRR {get;set;} = new OCS();
+		public OCS WheelRateRR {get;} = new OCS();
+		public OCS BumpStopRateRR {get;} = new OCS();
+		public OCS BumpStopRangeRR {get;} = new OCS();
 
 		// dampers: front left
-		public OCS BumpSlowFL {get;set;} = new OCS();
-		public OCS BumpFastFL {get;set;} = new OCS();
-		public OCS ReboundSlowFL {get;set;} = new OCS();
-		public OCS ReboundFastFL {get;set;} = new OCS();
+		public OCS BumpSlowFL {get;} = new OCS();
+		public OCS BumpFastFL {get;} = new OCS();
+		public OCS ReboundSlowFL {get;} = new OCS();
+		public OCS ReboundFastFL {get;} = new OCS();
 
 		// dampers: front right
-		public OCS BumpSlowFR {get;set;} = new OCS();
-		public OCS BumpFastFR {get;set;} = new OCS();
-		public OCS ReboundSlowFR {get;set;} = new OCS();
-		public OCS ReboundFastFR {get;set;} = new OCS();
+		public OCS BumpSlowFR {get;} = new OCS();
+		public OCS BumpFastFR {get;} = new OCS();
+		public OCS ReboundSlowFR {get;} = new OCS();
+		public OCS ReboundFastFR {get;} = new OCS();
 
 		// dampers: rear left
-		public OCS BumpSlowRL {get;set;} = new OCS();
-		public OCS BumpFastRL {get;set;} = new OCS();
-		public OCS ReboundSlowRL {get;set;} = new OCS();
-		public OCS ReboundFastRL {get;set;} = new OCS();
+		public OCS BumpSlowRL {get;} = new OCS();
+		public OCS BumpFastRL {get;} = new OCS();
+		public OCS ReboundSlowRL {get;} = new OCS();
+		public OCS ReboundFastRL {get;} = new OCS();
 
 		// dampers: rear right
-		public OCS BumpSlowRR {get;set;} = new OCS();
-		public OCS BumpFastRR {get;set;} = new OCS();
-		public OCS ReboundSlowRR {get;set;} = new OCS();
-		public OCS ReboundFastRR {get;set;} = new OCS();
+		public OCS BumpSlowRR {get;} = new OCS();
+		public OCS BumpFastRR {get;} = new OCS();
+		public OCS ReboundSlowRR {get;} = new OCS();
+		public OCS ReboundFastRR {get;} = new OCS();
 
 		// aero
-		public OCS RideHeightF {get;set;} = new OCS();
-		public OCS Splitter {get;set;} = new OCS();
-		public OCS DuctF {get;set;} = new OCS();
-		public OCS RideHeightR {get;set;} = new OCS();
-		public OCS Wing {get;set;} = new OCS();
-		public OCS DuctR {get;set;} = new OCS();
+		public OCS RideHeightF {get;} = new OCS();
+		public OCS Splitter {get;} = new OCS();
+		public OCS DuctF {get;} = new OCS();
+		public OCS RideHeightR {get;} = new OCS();
+		public OCS Wing {get;} = new OCS();
+		public OCS DuctR {get;} = new OCS();
 
 		// Append a setup of the the given car. Values are calcuated
 		// from the offsets given in the setup with the appropriate
