@@ -85,7 +85,12 @@ namespace SetupDiff {
 			}
 
 			// add it to the collection
-			this.setups.Append(setup, car);
+			try {
+				this.setups.Append(setup, car);
+			} catch (Exception ex) {
+				MessageBox.Show(string.Format(
+					"Could not append setup: {0}", ex.Message));
+			}
 		}
 
 		// RemoveSetup command handler. Expects the setup ID to be stored
