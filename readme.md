@@ -1,15 +1,22 @@
 # ACC Setup Diff
 Compare setups locally!
 
+## How to use
+1. Ensure `cars.json` is in your working directory.
+2. All of your setups contained within `...\My Documents\Assetto Corsa Competizione\Setups` will be loaded into the tree view on the left sorted by car and circuit.
+3. Double click on setup files in the tree to add as many as you like to the comparison table.
+4. Setups are compared against the setup in the first column and are highlighted for your convienience (green = above, red = below).
+5. Remove setups from the comparison by clicking on the corresponding header.
+
+## Caveats/Known bugs
+* The minimums provided for GT3s in `cars.json` only encompass the DHE tyre and their associated camber limits. If you need to compare setups that use different camber limits, adjust the associated values in `cars.json` manually.
+
 ## Compilation
 ### Debugging
 `dotnet build` or `dotnet run`. Remember to pass the path to `cars.json` if it isn't in the current directory.
 
 ### Publishing
 `dotnet publish --no-self-contained -c Release`. .NET runtime required. The single-file, self-contained executable is ridicuously large (>150MiB).
-
-## Running
-The program expects the working directory to contain `cars.json`. Either create your own in the format described below or use the one in this repo.
 
 ## Cars.json format
 ```javascript
@@ -37,11 +44,11 @@ The program expects the working directory to contain `cars.json`. Either create 
 		},
 
 		// and so on...
-		// see Car.cs and Ref.cs for an overview of which values are expected
+		// see Car.cs for an overview of which values are expected
 		// to be arrays and how many values they require (if any at all).
 	}
 ]
 ```
 
-# Licence
+## Licence
 BSD-3-Clause
