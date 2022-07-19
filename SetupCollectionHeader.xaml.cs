@@ -7,19 +7,19 @@ namespace SetupDiff {
 		public static readonly DependencyProperty ValsProp =
 			DependencyProperty.Register(
 				"Values",
-				typeof (ObservableCollection<string>),
+				typeof (ObservableCollection<ColumnHeader>),
 				typeof (SetupCollectionHeader),
 				new FrameworkPropertyMetadata(
-					new ObservableCollection<string>()));
+					new ObservableCollection<ColumnHeader>()));
 
 		public SetupCollectionHeader() {
 			this.InitializeComponent();
 			this.sp.DataContext = this;
 		}
 
-		public ObservableCollection<string> Values {
+		public ObservableCollection<ColumnHeader> Values {
 			get {
-				return (ObservableCollection<string>) GetValue(ValsProp);
+				return (ObservableCollection<ColumnHeader>) GetValue(ValsProp);
 			}
 			set {
 				SetValue(ValsProp, value);
