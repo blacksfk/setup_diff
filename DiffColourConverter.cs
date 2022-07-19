@@ -13,12 +13,19 @@ namespace SetupDiff {
 		// The second element of rawVals is expected to be the primary setting. I.e.
 		// the setting that is in the first column.
 		public object Convert(object[] rawVals, Type type, object param, CultureInfo ci) {
+			// default colour brush
+			SolidColorBrush brush = new SolidColorBrush(SystemColors.WindowTextColor);
+
+			// ensure there's actually something to compare against
+			if (rawVals[1] == DependencyProperty.UnsetValue) {
+				return brush;
+			}
+
 			// cast the raw values as settings
 			Setting setting = (Setting) rawVals[0];
 			Setting primary = (Setting) rawVals[1];
 
-			// create a brush and get the result of the diff
-			SolidColorBrush brush = new SolidColorBrush(SystemColors.WindowTextColor);
+			// get the result of the diff
 			int diff = setting.Diff(primary);
 
 			if (diff > 0) {
