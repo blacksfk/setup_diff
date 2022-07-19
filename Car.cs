@@ -52,7 +52,7 @@ namespace SetupDiff {
 		public ReferencePoint Wing {get;set;} = new ReferencePoint();
 
 		// A value of 1 indicates wet weather compound.
-		private static int WET_COMPOUND = 1;
+		private const int WET_COMPOUND = 1;
 
 		// Special case: check the selected compound type for the tyre
 		// set offset.
