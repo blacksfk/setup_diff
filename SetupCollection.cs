@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 namespace SetupDiff {
 	// aliases
 	using OCS = ObservableCollection<Setting>;
-	using OCStr = ObservableCollection<string>;
 
 	// Wrapper where each member is an observable collection of setup
 	// values.
@@ -18,9 +17,9 @@ namespace SetupDiff {
 		private const int RL = 2;
 		private const int RR = 3;
 
-		public OCStr CarName {get;set;} = new OCStr();
-		public OCStr SetupName {get;set;} = new OCStr();
-		public OCStr SetupPath {get;set;} = new OCStr();
+		// column header row
+		public ObservableCollection<ColumnHeader> ColumnHeaders {get;} =
+			new ObservableCollection<ColumnHeader>();
 
 		// tyres: front left
 		public OCS PressureFL {get;} = new OCS();
@@ -127,9 +126,7 @@ namespace SetupDiff {
 			var bsr = s.Mech.BumpStopRateUp;
 			var bsw = s.Mech.BumpStopWindow;
 
-			this.CarName.Add(car.Name);
-			this.SetupName.Add(s.Name);
-			this.SetupPath.Add(s.Path);
+			this.ColumnHeaders.Add(new ColumnHeader(s.Path, car.Name, s.Name));
 
 			this.PressureFL.Add(car.Pressure.Apply(tp[FL]));
 			this.PressureFR.Add(car.Pressure.Apply(tp[FR]));
@@ -211,80 +208,88 @@ namespace SetupDiff {
 			this.DuctR.Add(car.Duct.Apply(s.Aero.BrakeDuct[R]));
 		}
 
-		// Remove the setup pointed to by path.
-		// Returns true on success and false otherwise.
-		public bool Remove(string path) {
-			int idx = this.SetupPath.IndexOf(path);
+		// Remove all of the settings at the same index as the matched ID.
+		// Returns true if the ID was found (and all settings removed),
+		// and false otherwise.
+		public bool Remove(string id) {
+			int i;
+			var coll = this.ColumnHeaders;
 
-			if (idx < 0) {
+			// search for the id
+			for (i = 0; i < coll.Count; i++) {
+				if (coll[i].Id == id) {
+					break;
+				}
+			}
+
+			if (i >= coll.Count) {
+				// id not found
 				return false;
 			}
 
-			this.CarName.RemoveAt(idx);
-			this.SetupName.RemoveAt(idx);
-			this.SetupPath.RemoveAt(idx);
-			this.PressureFL.RemoveAt(idx);
-			this.ToeFL.RemoveAt(idx);
-			this.CamberFL.RemoveAt(idx);
-			this.CasterFL.RemoveAt(idx);
-			this.PressureFR.RemoveAt(idx);
-			this.ToeFR.RemoveAt(idx);
-			this.CamberFR.RemoveAt(idx);
-			this.CasterFR.RemoveAt(idx);
-			this.PressureRL.RemoveAt(idx);
-			this.ToeRL.RemoveAt(idx);
-			this.CamberRL.RemoveAt(idx);
-			this.PressureRR.RemoveAt(idx);
-			this.ToeRR.RemoveAt(idx);
-			this.CamberRR.RemoveAt(idx);
-			this.TC1.RemoveAt(idx);
-			this.TC2.RemoveAt(idx);
-			this.ABS.RemoveAt(idx);
-			this.ECU.RemoveAt(idx);
-			this.Fuel.RemoveAt(idx);
-			this.Tyre.RemoveAt(idx);
-			this.PadF.RemoveAt(idx);
-			this.PadR.RemoveAt(idx);
-			this.SteeringRatio.RemoveAt(idx);
-			this.ARBF.RemoveAt(idx);
-			this.BrakePower.RemoveAt(idx);
-			this.BrakeBias.RemoveAt(idx);
-			this.ARBR.RemoveAt(idx);
-			this.Preload.RemoveAt(idx);
-			this.WheelRateFL.RemoveAt(idx);
-			this.BumpStopRateFL.RemoveAt(idx);
-			this.BumpStopRangeFL.RemoveAt(idx);
-			this.WheelRateFR.RemoveAt(idx);
-			this.BumpStopRateFR.RemoveAt(idx);
-			this.BumpStopRangeFR.RemoveAt(idx);
-			this.WheelRateRL.RemoveAt(idx);
-			this.BumpStopRateRL.RemoveAt(idx);
-			this.BumpStopRangeRL.RemoveAt(idx);
-			this.WheelRateRR.RemoveAt(idx);
-			this.BumpStopRateRR.RemoveAt(idx);
-			this.BumpStopRangeRR.RemoveAt(idx);
-			this.BumpSlowFL.RemoveAt(idx);
-			this.BumpFastFL.RemoveAt(idx);
-			this.ReboundSlowFL.RemoveAt(idx);
-			this.ReboundFastFL.RemoveAt(idx);
-			this.BumpSlowFR.RemoveAt(idx);
-			this.BumpFastFR.RemoveAt(idx);
-			this.ReboundSlowFR.RemoveAt(idx);
-			this.ReboundFastFR.RemoveAt(idx);
-			this.BumpSlowRL.RemoveAt(idx);
-			this.BumpFastRL.RemoveAt(idx);
-			this.ReboundSlowRL.RemoveAt(idx);
-			this.ReboundFastRL.RemoveAt(idx);
-			this.BumpSlowRR.RemoveAt(idx);
-			this.BumpFastRR.RemoveAt(idx);
-			this.ReboundSlowRR.RemoveAt(idx);
-			this.ReboundFastRR.RemoveAt(idx);
-			this.RideHeightF.RemoveAt(idx);
-			this.Splitter.RemoveAt(idx);
-			this.DuctF.RemoveAt(idx);
-			this.RideHeightR.RemoveAt(idx);
-			this.Wing.RemoveAt(idx);
-			this.DuctR.RemoveAt(idx);
+			this.ColumnHeaders.RemoveAt(i);
+			this.PressureFL.RemoveAt(i);
+			this.ToeFL.RemoveAt(i);
+			this.CamberFL.RemoveAt(i);
+			this.CasterFL.RemoveAt(i);
+			this.PressureFR.RemoveAt(i);
+			this.ToeFR.RemoveAt(i);
+			this.CamberFR.RemoveAt(i);
+			this.CasterFR.RemoveAt(i);
+			this.PressureRL.RemoveAt(i);
+			this.ToeRL.RemoveAt(i);
+			this.CamberRL.RemoveAt(i);
+			this.PressureRR.RemoveAt(i);
+			this.ToeRR.RemoveAt(i);
+			this.CamberRR.RemoveAt(i);
+			this.TC1.RemoveAt(i);
+			this.TC2.RemoveAt(i);
+			this.ABS.RemoveAt(i);
+			this.ECU.RemoveAt(i);
+			this.Fuel.RemoveAt(i);
+			this.Tyre.RemoveAt(i);
+			this.PadF.RemoveAt(i);
+			this.PadR.RemoveAt(i);
+			this.SteeringRatio.RemoveAt(i);
+			this.ARBF.RemoveAt(i);
+			this.BrakePower.RemoveAt(i);
+			this.BrakeBias.RemoveAt(i);
+			this.ARBR.RemoveAt(i);
+			this.Preload.RemoveAt(i);
+			this.WheelRateFL.RemoveAt(i);
+			this.BumpStopRateFL.RemoveAt(i);
+			this.BumpStopRangeFL.RemoveAt(i);
+			this.WheelRateFR.RemoveAt(i);
+			this.BumpStopRateFR.RemoveAt(i);
+			this.BumpStopRangeFR.RemoveAt(i);
+			this.WheelRateRL.RemoveAt(i);
+			this.BumpStopRateRL.RemoveAt(i);
+			this.BumpStopRangeRL.RemoveAt(i);
+			this.WheelRateRR.RemoveAt(i);
+			this.BumpStopRateRR.RemoveAt(i);
+			this.BumpStopRangeRR.RemoveAt(i);
+			this.BumpSlowFL.RemoveAt(i);
+			this.BumpFastFL.RemoveAt(i);
+			this.ReboundSlowFL.RemoveAt(i);
+			this.ReboundFastFL.RemoveAt(i);
+			this.BumpSlowFR.RemoveAt(i);
+			this.BumpFastFR.RemoveAt(i);
+			this.ReboundSlowFR.RemoveAt(i);
+			this.ReboundFastFR.RemoveAt(i);
+			this.BumpSlowRL.RemoveAt(i);
+			this.BumpFastRL.RemoveAt(i);
+			this.ReboundSlowRL.RemoveAt(i);
+			this.ReboundFastRL.RemoveAt(i);
+			this.BumpSlowRR.RemoveAt(i);
+			this.BumpFastRR.RemoveAt(i);
+			this.ReboundSlowRR.RemoveAt(i);
+			this.ReboundFastRR.RemoveAt(i);
+			this.RideHeightF.RemoveAt(i);
+			this.Splitter.RemoveAt(i);
+			this.DuctF.RemoveAt(i);
+			this.RideHeightR.RemoveAt(i);
+			this.Wing.RemoveAt(i);
+			this.DuctR.RemoveAt(i);
 
 			return true;
 		}
