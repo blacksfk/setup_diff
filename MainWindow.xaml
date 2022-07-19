@@ -154,10 +154,10 @@
 					<StackPanel Style="{StaticResource content}">
 						<TextBlock Style="{StaticResource header}">Aero</TextBlock>
 						<local:SetupCollectionRow Header="Front ride height" Values="{Binding Setups.RideHeightF}"/>
-						<local:SetupCollectionRow Header="Splitter" Values="{Binding Setups.Splitter}"/>
-						<local:SetupCollectionRow Header="Front duct" Values="{Binding Setups.DuctF}"/>
 						<local:SetupCollectionRow Header="Rear ride height" Values="{Binding Setups.RideHeightR}"/>
+						<local:SetupCollectionRow Header="Splitter" Values="{Binding Setups.Splitter}"/>
 						<local:SetupCollectionRow Header="Wing" Values="{Binding Setups.Wing}"/>
+						<local:SetupCollectionRow Header="Front duct" Values="{Binding Setups.DuctF}"/>
 						<local:SetupCollectionRow Header="Rear duct" Values="{Binding Setups.DuctR}"/>
 					</StackPanel>
 				</StackPanel>
