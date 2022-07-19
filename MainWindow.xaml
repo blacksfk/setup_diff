@@ -6,6 +6,10 @@
 	xmlns:local="clr-namespace:SetupDiff"
 	mc:Ignorable="d"
 	Title="ACC Setup Diff" Width="1280" Height="768">
+	<Window.CommandBindings>
+		<CommandBinding Command="local:CustomCommands.RemoveSetup" Executed="removeSetupExecuted"/>
+	</Window.CommandBindings>
+
 	<DockPanel>
 		<TreeView ItemsSource="{Binding Tree}" DockPanel.Dock="Left" Style="{StaticResource tree}" ToolTip="Double click on a setup file to add it to the comparison table">
 			<TreeView.Resources>
@@ -23,28 +27,7 @@
 		</TreeView>
 			<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 				<StackPanel Style="{StaticResource content}">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Style="{StaticResource cell}"/>
-						<!-- for no apparent fucking reason an itemscontrol can't tell
-									you the index at which the item is stored (WHY NOT?!??!?!). and the
-									itemcontainergenerator methods all return null for no apparent
-									fucking reason. this has to be the most unnecessary garbage of
-									all time just to get the index of the item to be deleted -->
-						<ItemsControl ItemsSource="{Binding Setups.SetupPath}">
-							<ItemsControl.ItemsPanel>
-								<ItemsPanelTemplate>
-									<StackPanel Orientation="Horizontal"/>
-								</ItemsPanelTemplate>
-							</ItemsControl.ItemsPanel>
-							<ItemsControl.ItemTemplate>
-								<DataTemplate>
-									<Button Click="removeSetup" Tag="{Binding}" Style="{StaticResource delBtn}" ToolTip="Click to remove this setup">X</Button>
-								</DataTemplate>
-							</ItemsControl.ItemTemplate>
-						</ItemsControl>
-					</StackPanel>
-					<local:SetupCollectionHeader Values="{Binding Setups.SetupName}"/>
-					<local:SetupCollectionHeader Values="{Binding Setups.CarName}"/>
+					<local:SetupCollectionHeader Values="{Binding Setups.ColumnHeaders}"/>
 
 					<StackPanel Style="{StaticResource content}">
 						<TextBlock Style="{StaticResource header}">Tyres</TextBlock>
