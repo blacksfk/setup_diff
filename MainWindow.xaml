@@ -7,7 +7,7 @@
 	mc:Ignorable="d"
 	Title="ACC Setup Diff" Width="1280" Height="768">
 	<DockPanel>
-		<TreeView ItemsSource="{Binding Tree}" DockPanel.Dock="Left" Style="{StaticResource tree}">
+		<TreeView ItemsSource="{Binding Tree}" DockPanel.Dock="Left" Style="{StaticResource tree}" ToolTip="Double click on a setup file to add it to the comparison table">
 			<TreeView.Resources>
 				<!-- treeview data templates; specify children in the itemssource property -->
 				<HierarchicalDataTemplate DataType="{x:Type local:CarNode}" ItemsSource="{Binding Children}">
