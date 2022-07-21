@@ -5,6 +5,12 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 	mc:Ignorable="d"
 	xmlns:local="clr-namespace:SetupDiff">
+	<UserControl.Resources>
+		<Style x:Key="date" TargetType="TextBlock" BasedOn="{StaticResource smallDate}">
+			<Setter Property="Margin" Value="0,5,0,5"/>
+		</Style>
+		<local:DateTimeConverter x:Key="DateTimeConverter"/>
+	</UserControl.Resources>
 	<StackPanel Orientation="Horizontal" x:Name="sp">
 		<TextBlock Style="{StaticResource cell}"/>
 		<ItemsControl ItemsSource="{Binding Values}">
@@ -18,6 +24,7 @@
 					<Button Style="{StaticResource delBtn}" ToolTip="Click to remove this setup from the comparison table" Command="local:CustomCommands.RemoveSetup" CommandParameter="{Binding Id}">
 						<StackPanel>
 							<TextBlock Text="{Binding Setup}" Style="{StaticResource setupNameHeader}"/>
+							<TextBlock Text="{Binding Path=LastWriteTime, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource date}"/>
 							<TextBlock Text="{Binding Car}"/>
 						</StackPanel>
 					</Button>
