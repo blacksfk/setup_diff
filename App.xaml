@@ -30,6 +30,9 @@
 			<Setter Property="BorderBrush" Value="{x:Null}"/>
 			<Setter Property="HorizontalContentAlignment" Value="Left"/>
 		</Style>
+		<Style x:Key="smallDate" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="10"/>
+		</Style>
 		<Style x:Key="setupNameHeader" TargetType="TextBlock">
 			<Setter Property="FontSize" Value="14"/>
 			<Setter Property="FontWeight" Value="Bold"/>
