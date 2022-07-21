@@ -3,6 +3,17 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	mc:Ignorable="d">
-	<TextBlock x:Name="TB" Text="{Binding FileName}"/>
+	mc:Ignorable="d"
+	xmlns:local="clr-namespace:SetupDiff">
+	<UserControl.Resources>
+		<Style x:Key="date" TargetType="TextBlock" BasedOn="{StaticResource smallDate}">
+			<Setter Property="Margin" Value="10,0,0,0"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+		<local:DateTimeConverter x:Key="DateTimeConverter"/>
+	</UserControl.Resources>
+	<StackPanel x:Name="sp" Orientation="Horizontal">
+		<TextBlock Text="{Binding SetupNode.Name}"/>
+		<TextBlock Text="{Binding Path=SetupNode.LastWriteTime, Converter={StaticResource DateTimeConverter}}" Style="{StaticResource date}"/>
+	</StackPanel>
 </UserControl>

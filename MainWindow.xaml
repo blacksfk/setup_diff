@@ -21,7 +21,7 @@
 					<TextBlock Text="{Binding Name}"/>
 				</HierarchicalDataTemplate>
 				<DataTemplate DataType="{x:Type local:SetupNode}">
-					<local:SetupTreeNode FileName="{Binding Name}" FilePath="{Binding Path}" MouseLeftButtonDown="addSetup"/>
+					<local:SetupTreeNode SetupNode="{Binding}" MouseLeftButtonDown="addSetup"/>
 				</DataTemplate>
 			</TreeView.Resources>
 		</TreeView>

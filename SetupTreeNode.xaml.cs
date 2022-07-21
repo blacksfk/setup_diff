@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -5,42 +6,27 @@ namespace SetupDiff {
 	// Custom control to store both the file name and path,
 	// but only display the name.
 	public partial class SetupTreeNode : UserControl {
-		public static readonly DependencyProperty FNProp =
+		public static readonly DependencyProperty NodeProp =
 			DependencyProperty.Register(
-				"FileName",
-				typeof (string),
+				"SetupNode",
+				typeof (SetupNode),
 				typeof (SetupTreeNode),
 				new FrameworkPropertyMetadata(
-					string.Empty));
-
-		public static readonly DependencyProperty FPProp =
-			DependencyProperty.Register(
-				"FilePath",
-				typeof (string),
-				typeof (SetupTreeNode),
-				new FrameworkPropertyMetadata(
-					string.Empty));
+					new SetupNode("", "", new DateTime(DateTime.MinValue.Ticks))
+				)
+			);
 
 		public SetupTreeNode() {
 			this.InitializeComponent();
-			this.TB.DataContext = this;
+			this.sp.DataContext = this;
 		}
 
-		public string FileName {
+		public SetupNode SetupNode {
 			get {
-				return (string) GetValue(FNProp);
+				return (SetupNode) GetValue(NodeProp);
 			}
 			set {
-				SetValue(FNProp, value);
-			}
-		}
-
-		public string FilePath {
-			get {
-				return (string) GetValue(FPProp);
-			}
-			set {
-				SetValue(FPProp, value);
+				SetValue(NodeProp, value);
 			}
 		}
 	}
