@@ -140,7 +140,10 @@ namespace SetupDiff {
 					foreach (var file in files) {
 						// append the setup to the track.
 						// same deal with the file name
-						setups.Add(new SetupNode(Path.GetFileName(file), file));
+						string name = Path.GetFileName(file);
+						DateTime lwt = File.GetLastWriteTime(file);
+
+						setups.Add(new SetupNode(name, file, lwt));
 					}
 
 					if (setups.Count > 0) {
