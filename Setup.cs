@@ -8,6 +8,7 @@ namespace SetupDiff {
 		// name and path are set after the setup is loaded from the JSON file.
 		public string Name {get;set;} = string.Empty;
 		public string Path {get;set;} = string.Empty;
+		public DateTime LastWriteTime {get;set;} = new DateTime(DateTime.MinValue.Ticks);
 
 		public string CarName {get;set;} = string.Empty;
 		public BasicSetup BasicSetup {get;set;} = new BasicSetup();
@@ -74,7 +75,7 @@ namespace SetupDiff {
 		};
 
 		// Deserialise a setup file.
-		public static Setup FromFile(string path) {
+		public static Setup FromFile(string path, DateTime lastWriteTime) {
 			// open the file
 			var stream = File.Open(path, FileMode.Open);
 
@@ -91,6 +92,7 @@ namespace SetupDiff {
 			// set the setup name and path
 			setup.Path = path;
 			setup.Name = System.IO.Path.GetFileNameWithoutExtension(path);
+			setup.LastWriteTime = lastWriteTime;
 
 			return setup;
 		}

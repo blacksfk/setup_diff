@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace SetupDiff {
@@ -52,14 +53,23 @@ namespace SetupDiff {
 	// Represents a setup file. Has no children.
 	public class SetupNode : Node<byte> {
 		private string path;
+		private DateTime lwt;
 
-		public SetupNode(string name, string path) : base(name, new List<byte>()) {
+		public SetupNode(string name, string path, DateTime lastWriteTime) :
+			base(name, new List<byte>()) {
 			this.path = path;
+			this.lwt = lastWriteTime;
 		}
 
 		public string Path {
 			get {
 				return this.path;
+			}
+		}
+
+		public DateTime LastWriteTime {
+			get {
+				return this.lwt;
 			}
 		}
 	}

@@ -55,11 +55,11 @@ namespace SetupDiff {
 			}
 
 			// assert the sender as a SetupTreeNode and try to load the setup
-			SetupTreeNode stn = (SetupTreeNode) sender;
+			SetupNode sn = ((SetupTreeNode) sender).SetupNode;
 			Setup setup;
 
 			try {
-				setup = Setup.FromFile(stn.FilePath);
+				setup = Setup.FromFile(sn.Path, sn.LastWriteTime);
 			} catch (Exception ex) {
 				MessageBox.Show(string.Format("Could not load setup: {0}", ex.Message));
 

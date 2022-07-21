@@ -126,7 +126,8 @@ namespace SetupDiff {
 			var bsr = s.Mech.BumpStopRateUp;
 			var bsw = s.Mech.BumpStopWindow;
 
-			this.ColumnHeaders.Add(new ColumnHeader(s.Path, car.Name, s.Name));
+			this.ColumnHeaders.Add(new ColumnHeader(
+				s.Path, car.Name, s.Name, s.LastWriteTime));
 
 			this.PressureFL.Add(car.Pressure.Apply(tp[FL]));
 			this.PressureFR.Add(car.Pressure.Apply(tp[FR]));
