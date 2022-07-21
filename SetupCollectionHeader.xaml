@@ -17,7 +17,7 @@
 				<DataTemplate>
 					<Button Style="{StaticResource delBtn}" ToolTip="Click to remove this setup from the comparison table" Command="local:CustomCommands.RemoveSetup" CommandParameter="{Binding Id}">
 						<StackPanel>
-							<TextBlock Text="{Binding Setup}"/>
+							<TextBlock Text="{Binding Setup}" Style="{StaticResource setupNameHeader}"/>
 							<TextBlock Text="{Binding Car}"/>
 						</StackPanel>
 					</Button>
