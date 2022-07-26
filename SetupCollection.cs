@@ -201,10 +201,10 @@ namespace SetupDiff {
 			this.ReboundFastRR.Add(car.ReboundFast.Apply(s.Dampers.ReboundFast[RR]));
 
 			// aero
-			this.RideHeightF.Add(car.RideHeight[F].Apply(s.Aero.RideHeight[F]));
+			this.RideHeightF.Add(car.RideHeight[F].Apply(s.RideHeightF));
+			this.RideHeightR.Add(car.RideHeight[R].Apply(s.RideHeightR));
 			this.Splitter.Add(car.Splitter.Apply(s.Aero.Splitter));
 			this.DuctF.Add(car.Duct.Apply(s.Aero.BrakeDuct[F]));
-			this.RideHeightR.Add(car.RideHeight[R].Apply(s.Aero.RideHeight[R]));
 			this.Wing.Add(car.Wing.Apply(s.Aero.RearWing));
 			this.DuctR.Add(car.Duct.Apply(s.Aero.BrakeDuct[R]));
 		}
