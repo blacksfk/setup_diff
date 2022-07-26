@@ -63,6 +63,25 @@ namespace SetupDiff {
 			}
 		}
 
+		// Front ride height.
+		// The ride height is stored as a 4-element array with the first
+		// and third elements being the actual ride height while the second
+		// and fourth elements appear to be the "base" ride height values
+		// on the setup screen.
+		public int RideHeightF {
+			get {
+				return this.AdvancedSetup.AeroBalance.RideHeight[0];
+			}
+		}
+
+		// Rear ride height.
+		// See the front ride height shortcut accessor for an explanation.
+		public int RideHeightR {
+			get {
+				return this.AdvancedSetup.AeroBalance.RideHeight[2];
+			}
+		}
+
 		// Shortcut to the preload offset
 		public int Preload {
 			get {
